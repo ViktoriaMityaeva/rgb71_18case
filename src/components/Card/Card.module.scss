@@ -1,0 +1,38 @@
+.cardBody {
+  width: 23%;
+  height: 100%;
+
+  background: #F7F9FA;
+  border-radius: 16px;
+}
+
+.text {
+  margin: 16px 16px 0 16px;
+
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.15px;
+
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.value {
+  margin: 0 16px 16px 16px;
+
+  position: absolute;
+  z-index: 3;
+  top: 17%;
+
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 41px;
+  display: flex;
+  align-items: flex-end;
+
+}

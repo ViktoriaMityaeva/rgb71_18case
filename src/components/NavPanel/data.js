@@ -1,26 +1,31 @@
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
-import EqualizerIcon from '@mui/icons-material/Equalizer';
+import Account from '../../static/Account';
+import Print from '../../static/Print';
+import Equalizer from '../../static/Equalizer';
+import MedBookIcon from '../../static/MedBookIcon';
 
 export const btns = [
 	{
-		name: 'Профиль',
-		icon: (color = 'disabled' ) => <AccountCircleIcon color={color} />,
-		active: true
-	},
-	{
-		name: 'Отчет',
-		icon: (color = 'disabled' ) => <LocalPrintshopIcon color={color} />,
-		active: false
-	},
-	{
-		name: 'Статистика',
-		icon: (color = 'disabled' ) => <EqualizerIcon color={color} />,
-		active: false
-	},
-	{
+		id: 3,
 		name: 'Справочники',
-		icon: (color = 'disabled' ) => <AccountCircleIcon color={color} />,
-		active: false
+		icon: (color = '#bdbdbd' ) => <MedBookIcon color={color} />,
+		link: '/guide',
+	},
+	{
+		id: 2,
+		name: 'Статистика',
+		icon: (color = '#bdbdbd' ) => <Equalizer color={color} />,
+		link: '/statistic',
+	},
+	{
+		id: 1,
+		name: 'Отчет',
+		icon: (color = '#bdbdbd' ) => <Print color={color} />,
+		link: '/report',
+	},
+	{
+		id: 0,
+		name: 'Профиль',
+		icon: (color = '#bdbdbd' ) => <Account color={color} />,
+		link: '/account',
 	},
 ];

@@ -1,17 +1,24 @@
 import React from 'react';
 import styles from './ButtonNav.module.scss';
-// import { Icon} from "@mui/material";
+import {NavLink} from 'react-router-dom';
 
-const ButtonNav = ({ dataBtn }) => {
-	const { name, icon, active } = dataBtn;
-	const colorBackground = active ? '#E6EFFF' : '#FFFFFF';
-	const colorIcon = active ? 'primary' : 'disabled';
+const ButtonNav = ({ dataBtn, numBtn }) => {
+	const { id, name, icon, link } = dataBtn;
+	const activeBtn = numBtn === id;
+	const colorBackground = activeBtn ? '#E6EFFF' : '#FFFFFF';
+	const colorIcon = activeBtn ? '#367BF5' : '#bdbdbd';
 
 	return (
-		<button className={styles.btn} style={{background: colorBackground}}>
-			{icon(colorIcon)}
+		<NavLink
+			className={styles.btn}
+			style={{background: colorBackground}}
+			to={link}
+		>
+			<div className={styles.icon}>
+				{icon(colorIcon)}
+			</div>
 			<p>{name}</p>
-		</button>
+		</NavLink>
 	);
 };
 

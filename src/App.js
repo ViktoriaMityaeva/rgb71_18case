@@ -18,7 +18,7 @@ const App = observer(() => {
 
 	console.log(isAutorize);
 
-	return routes[false];
+	return routes[true];
 });
 
 export default App;

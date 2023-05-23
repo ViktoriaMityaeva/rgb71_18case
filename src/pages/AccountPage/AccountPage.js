@@ -1,14 +1,13 @@
 import React from 'react';
 import NavPanel from '../../components/NavPanel/NavPanel';
-import Report from '../../components/Report/Report';
+// import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 // import styles from './ArchivePage.module.scss';
 
 export default () => {
 	return (
 		<div>
-			<NavPanel numBtn={1} isDownloadBtn={true}/>
-
-			<Report />
+			<NavPanel numBtn={0} isDownloadBtn={false}/>
+			Аккаунт
 		</div>
 	);
 };
