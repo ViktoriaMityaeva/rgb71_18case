@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect, useState } from 'react';
+import NoAccessRouter from './routes/NoAccessRouter';
+import UserAccessRouter from './routes/UserAccessRouter';
+import authState from './store/authState';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = observer(() => {
+	const [isAutorize, setIsAutorize] = useState(false);
+
+	useEffect(() => {
+		setIsAutorize(authState.isAutorize);
+	}, [authState.isAutorize]);
+
+	const routes = {
+		true: <UserAccessRouter />,
+		false: <NoAccessRouter />,
+	};
+
+	console.log(isAutorize);
+
+	return routes[false];
+});
 
 export default App;
