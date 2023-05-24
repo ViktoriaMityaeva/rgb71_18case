@@ -4,11 +4,11 @@ import Redirect from '../helpers/Redirect';
 import SignInPage from '../pages/SingInPage/SingInPage';
 
 export default () => {
-	const path = '/signin';
+	const path = '/';
 
 	return (
 		<Routes>
-			<Route path='/signin' element={<SignInPage />} />
+			<Route path='/' element={<SignInPage />} />
 			<Route path='*' element={<Redirect to={path} />} />
 		</Routes>
 	);
