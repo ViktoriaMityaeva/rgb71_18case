@@ -5,12 +5,18 @@ import ButtonNav from './ButtonNav/ButtonNav';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import {IconButton, Modal} from '@mui/material';
+import MedBookIcon from '../../static/MedBookIcon';
+import authState from '../../store/authState';
 
 const NavPanel = ({ numBtn, isDownloadBtn }) => {
 	const [isOpen, setOpen] = useState(false);
 
-	const handleClick = () => {
+	const handleDowload = () => {
 		setOpen(true);
+	};
+
+	const handleLogOut = () => {
+		authState.setAutorize(false);
 	};
 
 	return (
@@ -40,13 +46,22 @@ const NavPanel = ({ numBtn, isDownloadBtn }) => {
 					{isDownloadBtn &&
 						<button
 							className={styles.btnDownload}
-							onClick={() => handleClick()}
+							onClick={() => handleDowload()}
 						>
 							<AddCircleIcon color='primary' fontSize='small' />
 							<p>Загрузить файл</p>
 						</button>
 					}
 				</div>
+				<button
+					className={styles.btn}
+					onClick={handleLogOut}
+				>
+					<div className={styles.icon}>
+						<MedBookIcon/>
+					</div>
+					<p>Выход</p>
+				</button>
 			</div>
 		</div>
 	);

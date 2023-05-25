@@ -16,9 +16,9 @@ const App = observer(() => {
 		false: <NoAccessRouter />,
 	};
 
-	console.log(isAutorize);
+	return routes[isAutorize];
 
-	return routes[true];
+
 });
 
 export default App;
