@@ -18,7 +18,7 @@ const Report = () => {
 				)}
 			</div>
 
-			<div>
+			<div className={styles.table}>
 				<Table />
 			</div>
 		</div>

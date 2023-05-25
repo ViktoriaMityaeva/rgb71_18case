@@ -1,18 +1,41 @@
-.headFont {
-  /* 16 sp • Body 1 Quicksand */
+.table {
+  width: 100%;
+}
 
+.headFont {
   font-family: 'Quicksand', sans-serif;
-  //font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  //line-height: 24px;
-  /* identical to box height, or 150% */
 
-  //display: flex;
-  //align-items: center;
   letter-spacing: 0.44px;
 
-  /* Gray · 60% */
-
   color: #919699;
+}
+
+.tableText {
+  text-align: right;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+
+  letter-spacing: 0.15px;
+
+  color: #5E6366;
+}
+
+.customCell {
+  text-align: left;
+}
+
+.nameText {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.link {
+  margin: 0 2px;
+
+  text-decoration: none;
 }

@@ -1,8 +1,7 @@
-import React from 'react';
-import Box from '@mui/material/Box';
+import React, {useState} from 'react';
 import styles from './Table.module.scss';
 import { v4 as uuidv4 } from 'uuid';
-
+import { Link } from 'react-router-dom';
 
 const columns = [
 	{ field: 'report_name', headerName: 'Отчет', flex: 1 },
@@ -15,6 +14,7 @@ const columns = [
 
 const rows = [
 	{
+		id: 0,
 		name: 'Отчет_23.05.23',
 		data: {
 			sum: 286,
@@ -24,6 +24,7 @@ const rows = [
 		}
 	},
 	{
+		id: 1,
 		name: 'Отчет_23.05.23',
 		data: {
 			sum: 286,
@@ -33,6 +34,7 @@ const rows = [
 		}
 	},
 	{
+		id: 2,
 		name: 'Отчет_23.05.23',
 		data: {
 			sum: 286,
@@ -42,6 +44,7 @@ const rows = [
 		}
 	},
 	{
+		id: 3,
 		name: 'Отчет_23.05.23',
 		data: {
 			sum: 286,
@@ -53,64 +56,87 @@ const rows = [
 
 ];
 
+const CustomCell = ({ id, name }) => {
+	const [isViewReport, setViewReport] = useState(false);
+	console.log(isViewReport);
+	console.log(id);
+
+	const viewReport = () => {
+		console.log('viewReport');
+
+		setViewReport(prevView => !prevView);
+	};
+
+	const analysisReport = () => {
+		console.log('analysisReport');
+	};
+
+	const downloadReport = () => {
+		console.log('downloadReport');
+	};
+
+	const deleteReport = () => {
+		console.log('deleteReport');
+	};
+
+	return(
+		<td className={styles.customCell}>
+			<div className={styles.nameText}>{name}</div>
+			<div>
+				<Link className={styles.link} style={{color: '#069697'}} onClick={viewReport}>Просмотр</Link>
+				<>·</>
+				<Link className={styles.link} style={{color: '#17FB04'}} onClick={analysisReport}>Анализ</Link>
+				<>·</>
+				<Link className={styles.link} style={{color: '#FFA800'}} onClick={downloadReport}>Скачать</Link>
+				<>·</>
+				<Link className={styles.link} style={{color: '#ED0707'}} onClick={deleteReport}>Удалить</Link>
+			</div>
+		</td>
+	);
+};
+
 const Table = () => {
-	const RowColumn = ({ name = '' }) => {
-		return (
-			<td className={styles.bodyBig}>
-				<p>{name}</p>
-				<div>
-					кнопки
-				</div>
-			</td>
+	// const [selectedRow, setSelectedRow] = useState(null);
+	//
+	// const handleClick = (idSelectedRow) => {
+	// 	setSelectedRow(idSelectedRow);
+	// };
+
+	const createRowHeader = ({ headerName = '' }) => (
+		<th key={uuidv4()} className={styles.headFont}>
+			<div>{headerName}</div>
+		</th>
+	);
+
+	const createRow = (row = {}) => {
+		const { id, name, data } = row;
+	
+		return(
+			<tr key={uuidv4()}
+				// style={{ height: 50, backgroundColor: row.id === selectedRow && 'hsla(31, 100%, 60%, 40%)',}}
+				// onClick={(row.id) => handleClick()}
+				style={{ height: 70 }}
+			>
+				<CustomCell id={id} name={name} />
+
+				{Object.values(data).map(setTableData)}
+			</tr>
 		);
 	};
 
+	const setTableData = (value) => (
+		<td key={uuidv4()} className={styles.tableText}>
+			<div>{value}</div>
+		</td>
+	);
+
 	return (
-		<div>
-			<Box className={styles.tableBox}>
-				<table>
-					<thead>
-						<tr>
-							{columns.map((column) => (
-								<th key={uuidv4()} className={styles.headFont}>
-									<p className={styles.bodyBig}>{column.headerName}</p>
-								</th>
-							))}
-						</tr>
-					</thead>
-					<tbody>
-						{rows.map((row) => {
-							const { name, /*sum, match, extra, part data*/ } = row;
-
-							return (
-								<tr
-									key={uuidv4()}
-									style={{
-										height: 104,
-										// backgroundColor: id === selectedRow && 'hsla(31, 100%, 60%, 40%)',
-									}}
-									// onDoubleClick={() => dataEventForMap(points, ship, id)}
-									// onClick={() => dataEventForReport(report, id)}
-								>
-									<RowColumn name={name} />
-
-									{/*{data.map((field) => {*/}
-									{/*	return(*/}
-									{/*		<td key={'kjhgfd'}>*/}
-									{/*			{field}*/}
-
-									{/*		</td>*/}
-									{/*	);*/}
-
-									{/*})}*/}
-
-								</tr>
-							);
-						})}
-					</tbody>
-				</table>
-			</Box>
-		</div>
+		<table cellSpacing='0' className={styles.table}>
+			<thead>
+				<tr>{columns.map(createRowHeader)}</tr>
+			</thead>
+			<tbody>{rows.map(createRow)}</tbody>
+		</table>
 	);
 };
 
