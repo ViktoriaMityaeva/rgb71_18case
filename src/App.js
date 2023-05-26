@@ -16,7 +16,9 @@ const App = observer(() => {
 		false: <NoAccessRouter />,
 	};
 
-	return routes[isAutorize];
+	console.log(isAutorize);
+	// return routes[isAutorize];
+	return routes[true];
 
 
 });

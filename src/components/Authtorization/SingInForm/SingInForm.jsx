@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import styles from './SingInForm.module.scss';
 import * as yup from 'yup';
 import {styled, TextField} from '@mui/material';
-import {apiAuthPost} from '../../api/allApi';
+import {apiAuthPost} from '../../../api/allApi';
 import authState from '../../../store/authState';
 
 const StyledTextField = styled(TextField)({

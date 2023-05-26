@@ -1,82 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './Table.module.scss';
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 
-const columns = [
-	{ field: 'report_name', headerName: 'Отчет', flex: 1 },
-	{ field: 'sum', headerName: 'Всего', flex: 1 },
-	{ field: 'match', headerName: 'Соответствует', flex: 1 },
-	{ field: 'extra', headerName: 'Доп. назначения', flex: 1 },
-	{ field: 'part', headerName: 'Частично', flex: 1 },
-];
-
-
-const rows = [
-	{
-		id: 0,
-		name: 'Отчет_23.05.23',
-		data: {
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 8
-		}
-	},
-	{
-		id: 1,
-		name: 'Отчет_23.05.23',
-		data: {
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 8
-		}
-	},
-	{
-		id: 2,
-		name: 'Отчет_23.05.23',
-		data: {
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 8
-		}
-	},
-	{
-		id: 3,
-		name: 'Отчет_23.05.23',
-		data: {
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 8
-		}
-	},
-
-];
-
-const CustomCell = ({ id, name }) => {
-	const [isViewReport, setViewReport] = useState(false);
-	console.log(isViewReport);
-	console.log(id);
-
+const CustomCell = ({ id, name, action = () => {} }) => {
 	const viewReport = () => {
-		console.log('viewReport');
-
-		setViewReport(prevView => !prevView);
+		const report = { id, name };
+		action(0, report);
 	};
 
 	const analysisReport = () => {
-		console.log('analysisReport');
+		action(1);
 	};
 
 	const downloadReport = () => {
-		console.log('downloadReport');
+		action(2);
 	};
 
 	const deleteReport = () => {
-		console.log('deleteReport');
+		action(3);
 	};
 
 	return(
@@ -95,7 +37,7 @@ const CustomCell = ({ id, name }) => {
 	);
 };
 
-const Table = () => {
+const Table = ({ isCustomColumn, columns, rows, action = () => {} }) => {
 	// const [selectedRow, setSelectedRow] = useState(null);
 	//
 	// const handleClick = (idSelectedRow) => {
@@ -117,8 +59,7 @@ const Table = () => {
 				// onClick={(row.id) => handleClick()}
 				style={{ height: 70 }}
 			>
-				<CustomCell id={id} name={name} />
-
+				{isCustomColumn && <CustomCell id={id} name={name} action={action} />}
 				{Object.values(data).map(setTableData)}
 			</tr>
 		);

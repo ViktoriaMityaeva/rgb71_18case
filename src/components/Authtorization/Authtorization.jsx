@@ -1,6 +1,6 @@
 import styles from './Authtorization.module.scss';
 import SingInForm from './SingInForm/SingInForm';
-import backgroundImage from '../assets/Avtorization.svg';
+import backgroundImage from '../../assets/Avtorization.svg';
 import Logo from './Icon/Logo';
 
 export default () => {

@@ -5,7 +5,7 @@ import ButtonNav from './ButtonNav/ButtonNav';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import {IconButton, Modal} from '@mui/material';
-import MedBookIcon from '../../static/MedBookIcon';
+import Door from '../../static/Door';
 import authState from '../../store/authState';
 
 const NavPanel = ({ numBtn, isDownloadBtn }) => {
@@ -58,7 +58,7 @@ const NavPanel = ({ numBtn, isDownloadBtn }) => {
 					onClick={handleLogOut}
 				>
 					<div className={styles.icon}>
-						<MedBookIcon/>
+						<Door />
 					</div>
 					<p>Выход</p>
 				</button>

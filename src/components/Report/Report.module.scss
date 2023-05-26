@@ -8,13 +8,9 @@
   right: 0;
 
   margin: 0 13.8% 0 50px;
-
-  //background: rebeccapurple;
 }
 
 .headPage {
-  //margin-top: 1%;
-
   display: flex;
   align-items: center;
   letter-spacing: 0.25px;
@@ -27,14 +23,23 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
+.iconBack {
+  margin: 0 15px 0 0;
+}
+
 .cards {
+  height: max-content;
   width: 100%;
-  height: 15%;
+
+  display: flex;
+  align-items: center;
+
+  margin: 30px 0;
+}
+
+.charts {
+  height: 50vh;
 
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-
-  margin: 30px 0;
 }
