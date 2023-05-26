@@ -1,1 +1,2 @@
 /src/store/*.js
+src/components/DragAndDrop/*.js

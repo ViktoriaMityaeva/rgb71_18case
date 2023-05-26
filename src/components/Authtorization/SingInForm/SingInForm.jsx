@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { Formik, Form } from 'formik';
 import styles from './SingInForm.module.scss';
 import * as yup from 'yup';
 import {styled, TextField} from '@mui/material';
@@ -52,7 +53,8 @@ const SingInForm = () => {
 
 	const postUser = async (values) => {
 		const linkAuth = '';
-		apiAuthPost(linkAuth, values).then(({ data }) => authState.setToken(data.token));
+		apiAuthPost(linkAuth, values).then((/*{ data }*/) =>  authState.setToken('token'));
+		/*// authState.setToken(data.token));*/
 	};
 
 	const formik = useFormik({
@@ -66,37 +68,43 @@ const SingInForm = () => {
 		},
 	});
 	return (
-		<form
-			className={styles.actionContainer}
+		<Formik
+			initialValues={formik.initialValues}
 			onSubmit={formik.handleSubmit}
 		>
-			<StyledTextField
-				variant='outlined'
-				fullWidth
-				placeholder='Логин'
-				id='username'
-				name='username'
-				value={formik.values.username}
-				onChange={formik.handleChange}
-				error={Boolean(formik.errors.username) && formik.touched.username}
-				helperText={formik.touched.username && formik.errors.username}
-			/>
+			<Form className={styles.formikCard}>
+				<div className={styles.textFieldCard}>
+					<StyledTextField
+						className={styles.textfieldStyle}
+						variant='outlined'
+						fullWidth
+						placeholder='Логин'
+						id='username'
+						name='username'
+						value={formik.values.username}
+						onChange={formik.handleChange}
+						error={Boolean(formik.errors.username) && formik.touched.username}
+						helperText={formik.touched.username && formik.errors.username}
+					/>
 
-			<StyledTextField
-				variant='outlined'
-				fullWidth
-				placeholder='Пароль'
-				name='password'
-				type={'password'}
-				error={Boolean(formik.errors.password) && formik.touched.password}
-				helperText={formik.touched.password && formik.errors.password}
-				onChange={formik.handleChange}
-			/>
+					<StyledTextField
+						className={styles.textfieldStyle}
+						variant='outlined'
+						fullWidth
+						placeholder='Пароль'
+						name='password'
+						type={'password'}
+						error={Boolean(formik.errors.password) && formik.touched.password}
+						helperText={formik.touched.password && formik.errors.password}
+						onChange={formik.handleChange}
+					/>
 
-			<button className={styles.downAction} type='submit'>
-				Войти
-			</button>
-		</form>
+				</div>
+				<button className={styles.downAction} type='submit'>
+					Войти
+				</button>
+			</Form>
+		</Formik>
 	);
 };
 

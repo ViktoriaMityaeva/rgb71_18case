@@ -9,9 +9,13 @@ export default () => {
 			className={styles.main}
 			style={{ backgroundImage: `url(${backgroundImage})` }}
 		>
-			<div className={styles.card}>
-				<Logo/>
-				<SingInForm />
+			<div className={styles.wrapper}>
+				<div className={styles.card}>
+					<div className={styles.logo}>
+						<Logo/>
+					</div>
+					<SingInForm />
+				</div>
 			</div>
 		</div>
 	);

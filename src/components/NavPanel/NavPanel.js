@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import {IconButton, Modal} from '@mui/material';
 import MedBookIcon from '../../static/MedBookIcon';
 import authState from '../../store/authState';
+import DragAndDrop from '../DragAndDrop/DragAndDrop';
 
 const NavPanel = ({ numBtn, isDownloadBtn }) => {
 	const [isOpen, setOpen] = useState(false);
@@ -30,9 +31,7 @@ const NavPanel = ({ numBtn, isDownloadBtn }) => {
 					</div>
 
 					<div className={styles.modal}>
-						<div style={{background: 'white', width: 600, height: 600}}>
-
-						</div>
+						<DragAndDrop/>
 					</div>
 				</div>
 			</Modal>
