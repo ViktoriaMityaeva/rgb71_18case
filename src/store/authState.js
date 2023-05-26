@@ -26,6 +26,7 @@ class AuthState {
 	};
 	setToken = ( token = '' ) => {
 		this.token = token;
+		console.log(this.token === '' ? !!this.token : true)
 		this.setAutorize(this.token === '' ? !!this.token : true);
 	};
 }
