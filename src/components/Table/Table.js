@@ -1,48 +1,68 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Table.module.scss';
 import { v4 as uuidv4 } from 'uuid';
-import { Link } from 'react-router-dom';
+import Delete from '../../static/Delete';
+import Download from '../../static/Download';
 
-const CustomCell = ({ id, name, action = () => {} }) => {
-	const viewReport = () => {
-		const report = { id, name };
-		action(0, report);
+const CustomCell = ({ isDelete, isDownload }) => {
+	const [isHoverDel, setIsHoverDel] = useState(false);
+	const [isHoverDown, setIsHoverDown] = useState(false);
+
+	const handleMouseEnterDel = () => {
+		setIsHoverDel(true);
+	};
+	const handleMouseLeaveDel = () => {
+		setIsHoverDel(false);
 	};
 
-	const analysisReport = () => {
-		action(1);
+	const handleMouseEnterDown = () => {
+		setIsHoverDown(true);
 	};
-
-	const downloadReport = () => {
-		action(2);
+	const handleMouseLeaveDown = () => {
+		setIsHoverDown(false);
 	};
 
 	const deleteReport = () => {
-		action(3);
+		// action(3);
+		console.log('delete');
+	};
+
+	const downloadReport = () => {
+		// action(2);
+		console.log('downloadReport');
 	};
 
 	return(
 		<td className={styles.customCell}>
-			<div className={styles.nameText}>{name}</div>
-			<div>
-				<Link className={styles.link} style={{color: '#069697'}} onClick={viewReport}>Просмотр</Link>
-				<>·</>
-				<Link className={styles.link} style={{color: '#17FB04'}} onClick={analysisReport}>Анализ</Link>
-				<>·</>
-				<Link className={styles.link} style={{color: '#FFA800'}} onClick={downloadReport}>Скачать</Link>
-				<>·</>
-				<Link className={styles.link} style={{color: '#ED0707'}} onClick={deleteReport}>Удалить</Link>
-			</div>
+			{isDelete &&
+				<div
+					style={{ marginRight: 10 }}
+					onClick={deleteReport}
+					onMouseEnter={handleMouseEnterDel}
+					onMouseLeave={handleMouseLeaveDel}
+				>
+					<Delete color={isHoverDel ? '#FF0000' : '#bdbdbd'} />
+				</div>
+			}
+			{isDownload &&
+				<div
+					onClick={downloadReport}
+					onMouseEnter={handleMouseEnterDown}
+					onMouseLeave={handleMouseLeaveDown}
+				>
+					<Download color={isHoverDown ? '#00693e' : '#bdbdbd'} />
+				</div>
+			}
 		</td>
 	);
 };
 
-const Table = ({ isCustomColumn, columns, rows, action = () => {} }) => {
-	// const [selectedRow, setSelectedRow] = useState(null);
-	//
-	// const handleClick = (idSelectedRow) => {
-	// 	setSelectedRow(idSelectedRow);
-	// };
+const Table = ({ isDownload = false, isDelete = false, columns, rows, action = () => {} }) => {
+	const handleClick = (idSelectedRow, reportName) => {
+		const report = { idSelectedRow, reportName };
+
+		action(0, report);
+	};
 
 	const createRowHeader = ({ headerName = '' }) => (
 		<th key={uuidv4()} className={styles.headFont}>
@@ -52,24 +72,32 @@ const Table = ({ isCustomColumn, columns, rows, action = () => {} }) => {
 
 	const createRow = (row = {}) => {
 		const { id, name, data } = row;
-	
+
+		let dataRow = Object.values(data);
+		const dataFirst = dataRow.splice(0, 1);
+
 		return(
-			<tr key={uuidv4()}
-				// style={{ height: 50, backgroundColor: row.id === selectedRow && 'hsla(31, 100%, 60%, 40%)',}}
-				// onClick={(row.id) => handleClick()}
-				style={{ height: 70 }}
-			>
-				{isCustomColumn && <CustomCell id={id} name={name} action={action} />}
-				{Object.values(data).map(setTableData)}
+			<tr key={uuidv4()} className={styles.row}>
+				<td className={styles.nameText} onClick={() => handleClick(id, name)}>
+					<div>{dataFirst}</div>
+				</td>
+
+				{dataRow.map((value) => (
+					<td key={uuidv4()} className={styles.tableText} onClick={() => handleClick(id, name)}>
+						<div>{value}</div>
+					</td>
+				))}
+
+				<CustomCell isDelete={isDelete} isDownload={isDownload}/>
+
+				{/*<td className={styles.customCell}>*/}
+				{/*	{isDelete && <CustomCell isDelete={isDelete} />}*/}
+				{/*</td>*/}
+
+				{/*{isDownload && <CustomCellDownload />}*/}
 			</tr>
 		);
 	};
-
-	const setTableData = (value) => (
-		<td key={uuidv4()} className={styles.tableText}>
-			<div>{value}</div>
-		</td>
-	);
 
 	return (
 		<table cellSpacing='0' className={styles.table}>

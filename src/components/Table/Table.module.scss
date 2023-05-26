@@ -25,17 +25,24 @@
 }
 
 .customCell {
-  text-align: left;
+  min-width: 15px;
+  margin: 20px 0;
+
+  display: flex;
+  justify-content: end;
 }
 
 .nameText {
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
   font-size: 20px;
+
+  text-align: left;
 }
 
-.link {
-  margin: 0 2px;
+.row {
+  height: 70px;
 
-  text-decoration: none;
+  justify-content: center;
+  align-items: center;
 }

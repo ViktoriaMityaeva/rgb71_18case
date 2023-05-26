@@ -5,6 +5,7 @@ import Card from '../Card/Card';
 import Table from '../Table/Table';
 import Chart from '../Charts/Chart';
 import Arrow from '../../static/Arrow';
+import { v4 as uuidv4 } from 'uuid';
 
 const Report = () => {
 	const [isView, setView] = useState(null);
@@ -12,10 +13,10 @@ const Report = () => {
 	const [nameReport, setNameReport] = useState('');
 
 	const changeView = (num, report) => {
-		const { id, name } = report;
-		setNameReport(name);
+		const { idSelectedRow, reportName } = report;
+		setNameReport(reportName);
 		setView(num);
-		console.log(id);
+		console.log(idSelectedRow);
 	};
 
 	const changeTable = (isValue) => {
@@ -30,12 +31,18 @@ const Report = () => {
 
 			<div className={styles.cards} style={{ justifyContent: 'space-between' }}>
 				{btnResults.map((dataBtn) =>
-					<Card key={'lkjhgfd'} dataBtn={dataBtn} heightCard={50} />
+					<Card
+						key={uuidv4()}
+						dataBtn={dataBtn}
+						heightCard={50}
+						colorBg={'#F7F9FA'}
+					/>
 				)}
 			</div>
 
 			<Table
-				isCustomColumn={true}
+				isDelete={true}
+				isDownload={true}
 				columns={columns}
 				rows={rows}
 				action={(num, report) => changeView(num, report)}
@@ -53,12 +60,22 @@ const Report = () => {
 			</div>
 
 			<div className={styles.cards} style={{ justifyContent: 'start' }}>
-				<Card dataBtn={{ text: 'Таблица'}} heightCard={30} action={() => changeTable(true)} />
-				<Card dataBtn={{ text: 'Дашборд'}} heightCard={30} action={() => changeTable(false)} />
+				<Card
+					dataBtn={{ text: 'Таблица'}}
+					heightCard={30}
+					colorBg={isTable ? '#E5EFFF' : '#F7F9FA'}
+					action={() => changeTable(true)}
+				/>
+				<Card
+					dataBtn={{ text: 'Дашборд'}}
+					heightCard={30}
+					colorBg={!isTable ? '#E5EFFF' : '#F7F9FA'}
+					action={() => changeTable(false)}
+				/>
 			</div>
 
 			{isTable
-				? <Table isCustomColumn={false} columns={columns} rows={rows} />
+				? <Table columns={columns} rows={rows} />
 				:
 				<div className={styles.charts} >
 					<div style={{width: '65%', marginRight: 30}}>

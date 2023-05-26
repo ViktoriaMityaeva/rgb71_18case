@@ -1,10 +1,10 @@
 .fullWin {
-  width: calc(61.2% - 50px);
   height: 91.3%;
 
   position: absolute;
   z-index: 1;
   top: 8.7%;
+  left: calc(21% + 50px);
   right: 0;
 
   margin: 0 13.8% 0 50px;
@@ -59,4 +59,16 @@
   font-size: 34px;
 
   color: rgba(0, 0, 0, 0.87);
+}
+
+@media (max-width: 1550px) {
+  .fullWin {
+    margin: 0 7% 0 30px;
+  }
+}
+
+@media (max-width: 865px) {
+  .fullWin {
+    margin: 0 3% 0 10px;
+  }
 }

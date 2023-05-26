@@ -33,12 +33,28 @@ export const columns = [
 	{ field: 'part', headerName: 'Частично', flex: 1 },
 ];
 
+export const columnsDoctors = [
+	{ field: 'name', headerName: 'ФИО', flex: 1 },
+	{ field: 'specialization', headerName: 'Специальность', flex: 1 },
+	{ field: 'sum', headerName: 'Всего', flex: 1 },
+	{ field: 'match', headerName: 'Соответствует', flex: 1 },
+	{ field: 'extra', headerName: 'Доп. назначения', flex: 1 },
+	{ field: 'part', headerName: 'Частично', flex: 1 },
+];
+
+export const columnsDepartment = [
+	{ field: 'name', headerName: 'Отделение', flex: 1 },
+	{ field: 'sum', headerName: 'Всего', flex: 1 },
+	{ field: 'match', headerName: 'Соответствует', flex: 1 },
+	{ field: 'extra', headerName: 'Доп. назначения', flex: 1 },
+	{ field: 'part', headerName: 'Частично', flex: 1 },
+];
 
 export const rows = [
 	{
 		id: 0,
-		name: 'Отчет_23.05.23',
 		data: {
+			name: 'Отчет_23.05.23',
 			sum: 286,
 			match: 186,
 			extra: 92,
@@ -47,8 +63,8 @@ export const rows = [
 	},
 	{
 		id: 1,
-		name: 'Отчет_23.05.23',
 		data: {
+			name: 'Отчет_23.05.23',
 			sum: 286,
 			match: 186,
 			extra: 92,
@@ -57,8 +73,8 @@ export const rows = [
 	},
 	{
 		id: 2,
-		name: 'Отчет_23.05.23',
 		data: {
+			name: 'Отчет_23.05.23',
 			sum: 286,
 			match: 186,
 			extra: 92,
@@ -67,14 +83,75 @@ export const rows = [
 	},
 	{
 		id: 3,
-		name: 'Отчет_23.05.23',
 		data: {
+			name: 'Отчет_23.05.23',
 			sum: 286,
 			match: 186,
 			extra: 92,
 			part: 8
 		}
 	},
+];
+
+export const rowsDoctors = [
+	{
+		id: 0,
+		data: {
+			name: 'ФИО1',
+			spec: 'врач-кардиолог',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 8
+		}
+	},
+	{
+		id: 1,
+		data: {
+			name: 'ФИО2',
+			spec: 'врач-оториноларинголог',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 8
+		}
+	},
+	{
+		id: 2,
+		data: {
+			name: 'ФИО3',
+			spec: 'врач-оториноларинголог',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 8
+		}
+	},
+	{
+		id: 3,
+		data: {
+			name: 'ФИО4',
+			spec: 'врач-кардиолог',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 8
+		}
+	},
+];
+
+export const rowsDepartment = [
+	{
+		id: 0,
+		data: {
+			name: 'Кардиология',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 8
+		}
+	},
+
 ];
 
 export const dataChart = [
