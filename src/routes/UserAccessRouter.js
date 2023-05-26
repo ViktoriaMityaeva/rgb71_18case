@@ -16,7 +16,7 @@ export default () => {
 
 			<Route
 				path={pathname}
-				element={<AccountPage />}
+				element={<ReportPage />}
 			/>
 		</Routes>
 	);
