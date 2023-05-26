@@ -42,7 +42,7 @@ const NavPanel = ({ numBtn, isDownloadBtn }) => {
 						<ButtonNav key={num} dataBtn={dataBtn} numBtn={numBtn} />
 					)}
 
-					{isDownloadBtn &&
+					{isDownloadBtn ?
 						<button
 							className={styles.btnDownload}
 							onClick={() => handleDowload()}
@@ -50,6 +50,7 @@ const NavPanel = ({ numBtn, isDownloadBtn }) => {
 							<AddCircleIcon color='primary' fontSize='small' />
 							<p>Загрузить файл</p>
 						</button>
+						: <div className={styles.btnDownloadCopy}></div>
 					}
 				</div>
 				<button
