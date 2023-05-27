@@ -59,6 +59,7 @@ const CustomCell = ({ isDelete, isDownload }) => {
 };
 
 const Table = ({ isDownload = false, isDelete = false, rowsPerPage = 5, columns, rows, action = () => {} }) => {
+	const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
 	const [pageNumber, setPageNumber] = useState(0);
 	const pagesVisited = pageNumber * rowsPerPage;
 
@@ -68,9 +69,18 @@ const Table = ({ isDownload = false, isDelete = false, rowsPerPage = 5, columns,
 		action(0, report);
 	};
 
-	const createRowHeader = ({ headerName = '' }) => (
-		<th key={uuidv4()}>
-			<div>{headerName}</div>
+	const createRowHeader = ({ headerName = '', field }) => (
+		<th key={uuidv4()} onClick={() => handleSort(field)}>
+			<div style={{ display: 'flex' }}>
+				{headerName}
+				{sortConfig && sortConfig.key === field ? (
+					<div style={{width: 30}}>{sortConfig.direction === 'ascending' ? '▲' : '▼'}</div>
+				)
+					: <div style={{width: 30}}></div>
+				}
+			</div>
+
+
 		</th>
 	);
 
@@ -96,7 +106,25 @@ const Table = ({ isDownload = false, isDelete = false, rowsPerPage = 5, columns,
 		);
 	};
 
+	const compareValues = (key, order = 'ascending') => (a, b) => {
+		const varA = typeof a.data[key] === 'string' ? a.data[key].toUpperCase() : a.data[key];
+		const varB = typeof b.data[key] === 'string' ? b.data[key].toUpperCase() : b.data[key];
+
+		let comparison = varA > varB ? 1 : varA < varB ? -1 : 0;
+
+		return order === 'descending' ? comparison * -1 : comparison;
+	};
+
 	const pageCount = Math.ceil(rows.length / rowsPerPage);
+	const sortedRows = rows.slice().sort(compareValues(sortConfig.key, sortConfig.direction));
+
+	const handleSort = (key) => {
+		let direction = 'ascending';
+		if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
+			direction = 'descending';
+		}
+		setSortConfig({ key, direction });
+	};
 
 	const changePage = ({ selected }) => {
 		setPageNumber(selected);
@@ -108,7 +136,7 @@ const Table = ({ isDownload = false, isDelete = false, rowsPerPage = 5, columns,
 				<thead>
 					<tr>{columns.map(createRowHeader)}</tr>
 				</thead>
-				<tbody>{rows.map(createRow)}</tbody>
+				<tbody>{sortedRows.map(createRow)}</tbody>
 			</table>
 
 			<ReactPaginate

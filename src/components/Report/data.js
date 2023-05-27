@@ -58,120 +58,98 @@ export const rows = [
 			sum: 286,
 			match: 186,
 			extra: 92,
-			part: 5
-		}
+			part: 5,
+		},
 	},
 	{
 		id: 1,
 		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 8
-		}
+			name: 'Отчет_24.05.23',
+			sum: 310,
+			match: 190,
+			extra: 102,
+			part: 6,
+		},
 	},
 	{
 		id: 2,
 		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 12
-		}
+			name: 'Отчет_25.05.23',
+			sum: 275,
+			match: 180,
+			extra: 85,
+			part: 4,
+		},
 	},
 	{
 		id: 3,
 		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 1
-		}
-	},
-
-	{
-		id: 0,
-		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 5
-		}
+			name: 'Отчет_26.05.23',
+			sum: 260,
+			match: 170,
+			extra: 80,
+			part: 3,
+		},
 	},
 	{
-		id: 1,
+		id: 4,
 		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 8
-		}
+			name: 'Отчет_27.05.23',
+			sum: 335,
+			match: 210,
+			extra: 110,
+			part: 7,
+		},
 	},
 	{
-		id: 2,
+		id: 5,
 		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
+			name: 'Отчет_28.05.23',
+			sum: 298,
+			match: 192,
 			extra: 92,
-			part: 12
-		}
+			part: 6,
+		},
 	},
 	{
-		id: 3,
+		id: 6,
 		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 1
-		}
-	},
-
-	{
-		id: 0,
-		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 5
-		}
+			name: 'Отчет_29.05.23',
+			sum: 280,
+			match: 181,
+			extra: 88,
+			part: 5,
+		},
 	},
 	{
-		id: 1,
+		id: 7,
 		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 8
-		}
+			name: 'Отчет_30.05.23',
+			sum: 305,
+			match: 200,
+			extra: 95,
+			part: 6,
+		},
 	},
 	{
-		id: 2,
+		id: 8,
 		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
+			name: 'Отчет_31.05.23',
+			sum: 294,
+			match: 190,
 			extra: 92,
-			part: 12
-		}
+			part: 5,
+		},
 	},
 	{
-		id: 3,
+		id: 9,
 		data: {
-			name: 'Отчет_23.05.23',
-			sum: 286,
-			match: 186,
-			extra: 92,
-			part: 1
-		}
+			name: 'Отчет_01.06.23',
+			sum: 320,
+			match: 210,
+			extra: 100,
+			part: 7,
+		},
 	},
 ];
 
