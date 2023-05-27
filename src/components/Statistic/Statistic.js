@@ -34,8 +34,8 @@ const Statistic = () => {
 				</div>
 
 				{isDoctor
-					? <Table columns={columnsDoctors} rows={rowsDoctors} />
-					: <Table columns={columnsDepartment} rows={rowsDepartment} />
+					? <Table isDownload={true} columns={columnsDoctors} rows={rowsDoctors} />
+					: <Table isDownload={true} columns={columnsDepartment} rows={rowsDepartment} />
 				}
 			</div>
 		</div>
