@@ -78,10 +78,10 @@ const Report = () => {
 				? <Table columns={columns} rows={rows} />
 				:
 				<div className={styles.charts} >
-					<div style={{width: '65%', marginRight: 30}}>
+					<div style={{minWidth: 500, width: '65%', marginRight: 30}}>
 						<Chart typeChart={'line'} />
 					</div>
-					<div style={{width: '30%'}}>
+					<div style={{minWidth: 500, width: '30%'}}>
 						<Chart typeChart={'pie'} />
 					</div>
 				</div>

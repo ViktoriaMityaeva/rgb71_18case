@@ -26,3 +26,29 @@
   font-weight: 600;
   font-size: 35px;
 }
+
+@media (max-width: 1450px) {
+  .text {
+    font-size: 18px;
+  }
+
+  .value {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .text {
+    font-size: 14px;
+  }
+
+  .value {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .cardBody {
+    width: 100%;
+  }
+}

@@ -41,7 +41,6 @@
   height: 50vh;
 
   display: flex;
-  flex-direction: row;
 }
 
 @media (max-width: 1550px) {
@@ -53,5 +52,22 @@
 @media (max-width: 865px) {
   .fullWin {
     margin: 0 3% 0 10px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .charts {
+    height: 30vh;
+
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1000px) {
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px 10px;
   }
 }

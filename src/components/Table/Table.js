@@ -79,8 +79,6 @@ const Table = ({ isDownload = false, isDelete = false, rowsPerPage = 5, columns,
 					: <div style={{width: 30}}></div>
 				}
 			</div>
-
-
 		</th>
 	);
 
