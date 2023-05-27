@@ -58,7 +58,7 @@ export const rows = [
 			sum: 286,
 			match: 186,
 			extra: 92,
-			part: 8
+			part: 5
 		}
 	},
 	{
@@ -78,7 +78,7 @@ export const rows = [
 			sum: 286,
 			match: 186,
 			extra: 92,
-			part: 8
+			part: 12
 		}
 	},
 	{
@@ -88,7 +88,89 @@ export const rows = [
 			sum: 286,
 			match: 186,
 			extra: 92,
+			part: 1
+		}
+	},
+
+	{
+		id: 0,
+		data: {
+			name: 'Отчет_23.05.23',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 5
+		}
+	},
+	{
+		id: 1,
+		data: {
+			name: 'Отчет_23.05.23',
+			sum: 286,
+			match: 186,
+			extra: 92,
 			part: 8
+		}
+	},
+	{
+		id: 2,
+		data: {
+			name: 'Отчет_23.05.23',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 12
+		}
+	},
+	{
+		id: 3,
+		data: {
+			name: 'Отчет_23.05.23',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 1
+		}
+	},
+
+	{
+		id: 0,
+		data: {
+			name: 'Отчет_23.05.23',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 5
+		}
+	},
+	{
+		id: 1,
+		data: {
+			name: 'Отчет_23.05.23',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 8
+		}
+	},
+	{
+		id: 2,
+		data: {
+			name: 'Отчет_23.05.23',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 12
+		}
+	},
+	{
+		id: 3,
+		data: {
+			name: 'Отчет_23.05.23',
+			sum: 286,
+			match: 186,
+			extra: 92,
+			part: 1
 		}
 	},
 ];

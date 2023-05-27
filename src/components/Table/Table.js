@@ -3,6 +3,7 @@ import styles from './Table.module.scss';
 import { v4 as uuidv4 } from 'uuid';
 import Delete from '../../static/Delete';
 import Download from '../../static/Download';
+import ReactPaginate from 'react-paginate';
 
 const CustomCell = ({ isDelete, isDownload }) => {
 	const [isHoverDel, setIsHoverDel] = useState(false);
@@ -57,7 +58,10 @@ const CustomCell = ({ isDelete, isDownload }) => {
 	);
 };
 
-const Table = ({ isDownload = false, isDelete = false, columns, rows, action = () => {} }) => {
+const Table = ({ isDownload = false, isDelete = false, rowsPerPage = 5, columns, rows, action = () => {} }) => {
+	const [pageNumber, setPageNumber] = useState(0);
+	const pagesVisited = pageNumber * rowsPerPage;
+
 	const handleClick = (idSelectedRow, reportName) => {
 		const report = { idSelectedRow, reportName };
 
@@ -65,47 +69,61 @@ const Table = ({ isDownload = false, isDelete = false, columns, rows, action = (
 	};
 
 	const createRowHeader = ({ headerName = '' }) => (
-		<th key={uuidv4()} className={styles.headFont}>
+		<th key={uuidv4()}>
 			<div>{headerName}</div>
 		</th>
 	);
 
-	const createRow = (row = {}) => {
-		const { id, name, data } = row;
+	const createRow = (row = {}, index) => {
+		const { id, data } = row;
 
-		let dataRow = Object.values(data);
-		const dataFirst = dataRow.splice(0, 1);
+		const dataRow = Object.values(data);
+
+		if (index < pagesVisited || index >= pagesVisited + rowsPerPage) {
+			return null;
+		}
 
 		return(
-			<tr key={uuidv4()} className={styles.row}>
-				<td className={styles.nameText} onClick={() => handleClick(id, name)}>
-					<div>{dataFirst}</div>
-				</td>
-
+			<tr key={uuidv4()}>
 				{dataRow.map((value) => (
-					<td key={uuidv4()} className={styles.tableText} onClick={() => handleClick(id, name)}>
+					<td key={uuidv4()} onClick={() => handleClick(id, data.name)}>
 						<div>{value}</div>
 					</td>
 				))}
 
 				<CustomCell isDelete={isDelete} isDownload={isDownload}/>
-
-				{/*<td className={styles.customCell}>*/}
-				{/*	{isDelete && <CustomCell isDelete={isDelete} />}*/}
-				{/*</td>*/}
-
-				{/*{isDownload && <CustomCellDownload />}*/}
 			</tr>
 		);
 	};
 
+	const pageCount = Math.ceil(rows.length / rowsPerPage);
+
+	const changePage = ({ selected }) => {
+		setPageNumber(selected);
+	};
+
 	return (
-		<table cellSpacing='0' className={styles.table}>
-			<thead>
-				<tr>{columns.map(createRowHeader)}</tr>
-			</thead>
-			<tbody>{rows.map(createRow)}</tbody>
-		</table>
+		<div className={styles.page}>
+			<table cellSpacing='0' className={styles.table}>
+				<thead>
+					<tr>{columns.map(createRowHeader)}</tr>
+				</thead>
+				<tbody>{rows.map(createRow)}</tbody>
+			</table>
+
+			<ReactPaginate
+				previousLabel={'Назад'}
+				nextLabel={'Далее'}
+				pageCount={pageCount}
+				onPageChange={changePage}
+				pageClassName={styles.pageItem}
+				containerClassName={styles.paginationBtns}
+				previousLinkClassName={styles.previousBtn}
+				nextLinkClassName={styles.nextBtn}
+				disabledClassName={styles.paginationDisabled}
+				activeClassName={styles.paginationActive}
+			/>
+		</div>
 	);
 };
 
