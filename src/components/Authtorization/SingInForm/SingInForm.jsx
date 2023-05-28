@@ -6,7 +6,6 @@ import * as yup from 'yup';
 import { styled, TextField } from '@mui/material';
 import { apiAuthPost } from '../../../api/allApi';
 import authState from '../../../store/authState';
-import connectsState from '../../../store/connectsState';
 
 const StyledTextField = styled(TextField)({
 
@@ -44,8 +43,9 @@ const StyledTextField = styled(TextField)({
 
 
 const SingInForm = () => {
-	const { linkLogin } = connectsState;
+	// const { linkLogin } = connectsState;
 
+	const url = 'http://ai-med-help.ru:8000/api/user/login/';
 	const validationSchema = yup.object({
 		password: yup
 			.string('Введите пароль')
@@ -54,9 +54,9 @@ const SingInForm = () => {
 	});
 
 	const postUser = async (values) => {
-		apiAuthPost(linkLogin, values).then(({ data, error }) => {
+		apiAuthPost(url, values).then(({ data }) => {
 			authState.setAutorize(data);
-			console.log(error);
+			console.log(data);
 		});
 	};
 

@@ -4,10 +4,10 @@ import connectsState from '../../store/connectsState';
 export default ({ children }) => {
 	useEffect(() => {
 
-		const serverPath = 'ai-med-help.ru:8000';
+		// const serverPath = 'ai-med-help.ru:8000';
 
 
-		const mainPath = `http://${serverPath}/api/`;
+		const mainPath = 'http://ai-med-help.ru:8000/api/';
 
 
 		// Авторизация и аккаунт
