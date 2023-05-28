@@ -7,27 +7,39 @@ class AuthState {
 		password: 'admin',
 	};
 
-	isAutorize = JSON.parse(localStorage.getItem('AuthStore'))?.isAutorize || false;
-	token =  JSON.parse(localStorage.getItem('AuthStore'))?.token ?? '';
+	isAutorize = false;
+	token =  '';
+	role = JSON.parse(localStorage.getItem('AuthStore'))?.role ?? '';
+	isSuperAdmin = JSON.parse(localStorage.getItem('AuthStore'))?.isSuperAdmin || false;
 
 	constructor() {
 		makeAutoObservable(this);
 
 		makePersistable(this, {
 			name: 'AuthStore',
-			properties: ['isAutorize', 'token'],
+			properties: ["token", "isAutorize", "role", "isSuperAdmin"],
 			storage: window.localStorage,
 		});
 	}
 
-	setAutorize = (isAutorize = false) => {
-		this.token = '';
-		this.isAutorize = isAutorize;
+	setAutorize = ( data ) => {
+		this.token = data?.token;
+		// this.isAutorize = !this.token === '';
+		this.isAutorize = true;
+		this.role = data?.role;
+		this.isSuperAdmin = data?.isSuperAdmin;
+
 	};
-	setToken = ( token = '' ) => {
-		this.token = token;
-		console.log(this.token === '' ? !!this.token : true)
-		this.setAutorize(this.token === '' ? !!this.token : true);
+
+	setUserData = (user) => {
+		this.user = user;
+	};
+	setLogOut = () => {
+		this.token = '';
+		this.role = '';
+		this.isSuperAdmin = false;
+		this.isAutorize = false;
+		localStorage.setItem("Authorization", "");
 	};
 }
 

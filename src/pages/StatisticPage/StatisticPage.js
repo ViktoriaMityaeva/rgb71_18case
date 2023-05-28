@@ -5,7 +5,7 @@ import Statistic from '../../components/Statistic/Statistic';
 export default () => {
 	return (
 		<div>
-			<NavPanel numBtn={2} isDownloadBtn={false}/>
+			<NavPanel numBtn={2}/>
 
 			<Statistic />
 		</div>
