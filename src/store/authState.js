@@ -23,12 +23,14 @@ class AuthState {
 	}
 
 	setAutorize = ( data ) => {
-		this.token = data?.token;
-		// this.isAutorize = !this.token === '';
-		this.isAutorize = true;
-		this.role = data?.role;
-		this.isSuperAdmin = data?.isSuperAdmin;
-
+		if (typeof data.token === "string" && data.token?.length) {
+			this.token = data.token;
+			this.isAutorize = true;
+			this.role = data?.role;
+			this.isSuperAdmin = data?.isSuperAdmin;
+			localStorage.setItem("Authorization", `Token ${data.token}`);
+		}
+		console.log(typeof data.token === "string" && data.token?.length);
 	};
 
 	setUserData = (user) => {
@@ -39,7 +41,7 @@ class AuthState {
 		this.role = '';
 		this.isSuperAdmin = false;
 		this.isAutorize = false;
-		localStorage.setItem("Authorization", "");
+		localStorage.setItem("AuthStore", "");
 	};
 }
 
