@@ -29,26 +29,28 @@ export default () => {
 		apiMainGet(url).then(({ data }) => {
 			authState.setUserData(data);
 
-			const { name, email, phone, image } = data;
+			const { photo } = data;
 
-			setUserData({
-				'Имя': name,
-				'Email': email,
-				'Номер Телефона': phone,
-			});
-			setAvatar(image);
+			setUserData(data);
+			setAvatar(photo);
 
 			setLoad(false);
+
 		});
 	};
 
 	const userFields = (tempUserData = {}) => {
-		const userKeys = Object.keys(tempUserData);
+		const {first_name: name, last_name: lastName} = tempUserData;
+		const infoPerson = [
+			{title: 'Имя пользователя', value: name},
+			{title: 'Фамилия пользователя', value: lastName},
+		];
 
 		return (
+
 			<div>
-				{userKeys.map((name) => (
-					<UserFields key={uuidv4()} title={name} />
+				{infoPerson.map(({title, value}) => (
+					<UserFields key={uuidv4()} title={title} value={value}/>
 				))}
 			</div>
 		);

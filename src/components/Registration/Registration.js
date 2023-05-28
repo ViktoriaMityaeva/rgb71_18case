@@ -3,12 +3,14 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { Formik, Form } from 'formik';
 import {apiAuthPost} from '../../api/allApi';
-import connectsState from '../../store/connectsState';
+// import connectsState from '../../store/connectsState';
 
 function Registration() {
-	const { linkRegister } = connectsState;
+	// const { linkRegister } = connectsState;
+
+	const url = 'http://ai-med-help.ru:8000/api/user/register/';
 	const postUser = async (values) => {
-		apiAuthPost(linkRegister, values).then(({ error }) => {
+		apiAuthPost(url, values).then(({ error }) => {
 			if (!error) console.log('Успешно');
 		});
 	};
