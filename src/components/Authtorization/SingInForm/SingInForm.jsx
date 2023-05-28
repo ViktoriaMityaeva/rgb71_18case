@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import styles from './SingInForm.module.scss';
 import * as yup from 'yup';
 import {styled, TextField} from '@mui/material';
-import {apiAuthPost} from '../../api/allApi';
+import {apiAuthPost} from '../../../api/allApi';
 import authState from '../../../store/authState';
 
 const StyledTextField = styled(TextField)({
@@ -52,14 +52,16 @@ const SingInForm = () => {
 	});
 
 	const postUser = async (values) => {
-		const linkAuth = '';
-		apiAuthPost(linkAuth, values).then((/*{ data }*/) =>  authState.setToken('token'));
-		/*// authState.setToken(data.token));*/
+		const linkAuth = 'http://ai-med-help.ru:8000/api/user/login/';
+
+		apiAuthPost(linkAuth, values).then(({ data }) =>
+			authState.setAutorize(data)
+		);
 	};
 
 	const formik = useFormik({
 		initialValues: {
-			username: '',
+			email: '',
 			password: '',
 		},
 		validationSchema: validationSchema,
@@ -79,12 +81,12 @@ const SingInForm = () => {
 						variant='outlined'
 						fullWidth
 						placeholder='Логин'
-						id='username'
-						name='username'
-						value={formik.values.username}
+						id='email'
+						name='email'
+						value={formik.values.email}
 						onChange={formik.handleChange}
-						error={Boolean(formik.errors.username) && formik.touched.username}
-						helperText={formik.touched.username && formik.errors.username}
+						error={Boolean(formik.errors.email) && formik.touched.email}
+						helperText={formik.touched.email && formik.errors.email}
 					/>
 
 					<StyledTextField
