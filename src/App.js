@@ -5,6 +5,7 @@ import UserAccessRouter from './routes/UserAccessRouter';
 import authState from './store/authState';
 
 const App = observer(() => {
+
 	const [isAutorize, setIsAutorize] = useState(false);
 
 	useEffect(() => {
