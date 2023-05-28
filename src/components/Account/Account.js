@@ -8,13 +8,6 @@ import {Grid} from '@mui/material';
 
 export default () => {
 
-	// const infoPerson = [
-	// 	{title: 'Имя пользователя', value: 'Иванов Иван Иванович'},
-	// 	{title: 'Почта', value: 'vanka@vstanka.pechka'},
-	// 	{title: 'Телефон', value: '76541230000'},
-	// ];
-
-	// const { isSuperAdmin } = authState;
 	const [isLoad, setLoad] = useState(true);
 	const [userData, setUserData] = useState({});
 	const [avatar, setAvatar] = useState('');
@@ -30,9 +23,10 @@ export default () => {
 			authState.setUserData(data);
 
 			const { photo } = data;
+			const url = `http://ai-med-help.ru:8000/${photo}`;
 
 			setUserData(data);
-			setAvatar(photo);
+			setAvatar(url);
 
 			setLoad(false);
 
