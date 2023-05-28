@@ -3,9 +3,10 @@ import { useFormik } from 'formik';
 import { Formik, Form } from 'formik';
 import styles from './SingInForm.module.scss';
 import * as yup from 'yup';
-import {styled, TextField} from '@mui/material';
-import {apiAuthPost} from '../../../api/allApi';
+import { styled, TextField } from '@mui/material';
+import { apiAuthPost } from '../../../api/allApi';
 import authState from '../../../store/authState';
+import connectsState from '../../../store/connectsState';
 
 const StyledTextField = styled(TextField)({
 
@@ -43,6 +44,7 @@ const StyledTextField = styled(TextField)({
 
 
 const SingInForm = () => {
+	const { linkLogin } = connectsState;
 
 	const validationSchema = yup.object({
 		password: yup
@@ -52,14 +54,15 @@ const SingInForm = () => {
 	});
 
 	const postUser = async (values) => {
-		const linkAuth = '';
-		apiAuthPost(linkAuth, values).then((/*{ data }*/) =>  authState.setToken('token'));
-		/*// authState.setToken(data.token));*/
+		apiAuthPost(linkLogin, values).then(({ data, error }) => {
+			authState.setAutorize(data);
+			console.log(error);
+		});
 	};
 
 	const formik = useFormik({
 		initialValues: {
-			username: '',
+			email: '',
 			password: '',
 		},
 		validationSchema: validationSchema,
@@ -79,12 +82,12 @@ const SingInForm = () => {
 						variant='outlined'
 						fullWidth
 						placeholder='Логин'
-						id='username'
-						name='username'
-						value={formik.values.username}
+						id='email'
+						name='email'
+						value={formik.values.email}
 						onChange={formik.handleChange}
-						error={Boolean(formik.errors.username) && formik.touched.username}
-						helperText={formik.touched.username && formik.errors.username}
+						error={Boolean(formik.errors.email) && formik.touched.email}
+						helperText={formik.touched.email && formik.errors.email}
 					/>
 
 					<StyledTextField

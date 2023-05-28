@@ -8,16 +8,22 @@ import {IconButton, Modal} from '@mui/material';
 import Door from '../../static/Door';
 import authState from '../../store/authState';
 import DragAndDrop from '../DragAndDrop/DragAndDrop';
+import { apiPost } from '../../api/allApi';
+import connectsState from '../../store/connectsState';
+import Registration from '../Registration/Registration';
 
-const NavPanel = ({ numBtn, isDownloadBtn }) => {
+const NavPanel = ({ numBtn, isDownloadBtn = false, isProfile = false }) => {
 	const [isOpen, setOpen] = useState(false);
+	const { linkLogout } = connectsState;
 
 	const handleDowload = () => {
 		setOpen(true);
 	};
 
 	const handleLogOut = () => {
-		authState.setAutorize(false);
+		apiPost( linkLogout ).then(() =>
+			authState.setLogOut()
+		);
 	};
 
 	return (
@@ -29,9 +35,8 @@ const NavPanel = ({ numBtn, isDownloadBtn }) => {
 							<CloseIcon width={45} height={45} color={'#FF992C'} />
 						</IconButton>
 					</div>
-
 					<div className={styles.modal}>
-						<DragAndDrop/>
+						{isDownloadBtn ? <DragAndDrop/> : <Registration/>}
 					</div>
 				</div>
 			</Modal>
@@ -50,7 +55,17 @@ const NavPanel = ({ numBtn, isDownloadBtn }) => {
 							<AddCircleIcon color='primary' fontSize='small' />
 							<p>Загрузить файл</p>
 						</button>
-						: <div className={styles.btnDownloadCopy}></div>
+						: <div className={styles.btnDownloadCopy}/>
+					}
+					{isProfile ?
+						<button
+							className={styles.btnDownload}
+							onClick={() => handleDowload()}
+						>
+							<AddCircleIcon color='primary' fontSize='small' />
+							<p>Добавить пользователя</p>
+						</button>
+						: <div className={styles.btnDownloadCopy}/>
 					}
 				</div>
 				<button

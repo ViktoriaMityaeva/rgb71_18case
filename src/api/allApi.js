@@ -1,3 +1,5 @@
+import authState from '../store/authState';
+
 export const apiPost = async (url = '', parameters = {}) => {
 	const serverData = {
 		ans: { status: null, statusText: '' },
@@ -48,6 +50,37 @@ export const apiAuthPost = async (url = '', values) => {
 	} catch (error) {
 		serverData.error.isError = true;
 		serverData.error.errorText = error;
+	}
+
+	return serverData;
+};
+export const apiMainGet = async (url = '') => {
+	const serverData = {
+		ans: { status: null, statusText: '' },
+		error: { isError: false, errorText: '' },
+		data: [],
+	};
+	const token = authState.token;
+
+	const options = {
+		method: 'GET',
+		headers: {
+			'Authorization': `Bearer ${token}`,
+		},
+		mode: 'cors',
+	};
+
+	try {
+		const answer = await fetch(url, options);
+
+		const { status, statusText } = answer;
+		const { ans } = serverData;
+
+		serverData.ans = { ...ans, status, statusText };
+
+		serverData.data = await answer.json();
+	} catch (error) {
+		serverData.error = { isError: true, errorText: error.message };
 	}
 
 	return serverData;

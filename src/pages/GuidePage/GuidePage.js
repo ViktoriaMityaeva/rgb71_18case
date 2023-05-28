@@ -5,7 +5,7 @@ import Guide from '../../components/Guide/Guide';
 export default () => {
 	return (
 		<div>
-			<NavPanel numBtn={3} isDownloadBtn={false}/>
+			<NavPanel numBtn={3}/>
 
 			<Guide />
 		</div>

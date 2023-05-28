@@ -5,18 +5,20 @@ import UserAccessRouter from './routes/UserAccessRouter';
 import authState from './store/authState';
 
 const App = observer(() => {
-	const [isAutorize, setIsAutorize] = useState(false);
+	const [isAuth, setIsAutorize] = useState(false);
+
+	const { isAutorize } = authState;
 
 	useEffect(() => {
-		setIsAutorize(authState.isAutorize);
-	}, [authState.isAutorize]);
+		setIsAutorize(isAutorize);
+	}, [isAutorize]);
 
 	const routes = {
 		true: <UserAccessRouter />,
 		false: <NoAccessRouter />,
 	};
 
-	return routes[isAutorize];
+	return routes[isAuth];
 });
 
 export default App;

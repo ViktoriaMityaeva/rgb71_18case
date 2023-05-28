@@ -1,0 +1,84 @@
+
+
+.actionContainer {
+  height: 60%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.formikCard {
+  width: 96%;
+  height: 500px;
+
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  //align-content: center;
+  //align-items: center;
+
+  padding: 0 20px;
+}
+
+.textFieldCard {
+  height: max-content;
+
+  display: flex;
+  flex-direction: column;
+}
+.textfieldStyle {
+  width: 100%;
+  height: 81px;
+
+  font-family: 'Inter';
+  font-size: 20px;
+
+  border-radius: 8px;
+  border: none;
+}
+.downAction {
+  width: 100%;
+  height: 55px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+
+  color: #ffffff;
+  background: #6575FF;
+  border-radius: 8px;
+
+  border: none;
+
+  cursor: pointer;
+
+  margin-top: 20px;
+}
+.downActionHelp {
+  height: 72px;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  /* identical to box height, or 140% */
+
+  text-align: right;
+  color: #838383;
+
+  cursor: pointer;
+}
+
