@@ -10,7 +10,7 @@ import authState from '../../store/authState';
 import DragAndDrop from '../DragAndDrop/DragAndDrop';
 import { apiPost } from '../../api/allApi';
 // import connectsState from '../../store/connectsState';
-import Registration from '../Registration/Registration';
+// import Registration from '../Registration/Registration';
 
 const NavPanel = ({ numBtn, isDownloadBtn = false, isProfile = false }) => {
 	const [isOpen, setOpen] = useState(false);
@@ -35,7 +35,7 @@ const NavPanel = ({ numBtn, isDownloadBtn = false, isProfile = false }) => {
 						</IconButton>
 					</div>
 					<div className={styles.modal}>
-						{isDownloadBtn ? <DragAndDrop/> : <Registration/>}
+						<DragAndDrop/>
 					</div>
 				</div>
 			</Modal>
